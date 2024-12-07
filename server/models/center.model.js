@@ -1,6 +1,5 @@
 import { model, Schema } from "mongoose";
 
-// Define the center schema
 const centerSchema = new Schema(
     {
         name: {
@@ -21,7 +20,6 @@ const centerSchema = new Schema(
 
 const Center = model("Center", centerSchema);
 
-// Function to insert default centers
 const insertDefaultCenters = async (sports) => {
     try {
         const defaultCenters = [

@@ -1,4 +1,4 @@
-import Sport from '../models/sport.model.js';
+import { Sport } from '../models/sport.model.js';
 
 export async function createSport(req, res) {
   const { name } = req.body;
@@ -16,10 +16,10 @@ export async function createSport(req, res) {
 }
 
 export async function getAllSports(req, res) {
-    try {
-      const sports = await Sport.find();
-      res.status(200).json({ message: 'Sports fetched successfully', data: sports });
-    } catch (err) {
-      res.status(500).json({ message: 'Failed to fetch sports', error: err.message });
-    }
+  try {
+    const sports = await Sport.find();
+    res.status(200).json({ message: 'Sports fetched successfully', data: sports });
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to fetch sports', error: err.message });
   }
+}

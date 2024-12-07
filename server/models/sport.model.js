@@ -1,12 +1,11 @@
 import { model, Schema } from "mongoose";
 
-// Define the sport schema
 const SportSchema = new Schema(
     {
         name: {
             type: String,
             required: true,
-            unique: true, // Ensure sport names are unique
+            unique: true,
         },
     },
     {
@@ -16,7 +15,6 @@ const SportSchema = new Schema(
 
 const Sport = model("Sport", SportSchema);
 
-// Function to insert default sports
 const insertDefaultSports = async () => {
     try {
         const defaultSports = ["Badminton", "Basketball"];
@@ -28,7 +26,7 @@ const insertDefaultSports = async () => {
                 existingSport = await Sport.create({ name: sport });
                 console.log(`Inserted default sport: ${sport}`);
             }
-            insertedSports.push(existingSport); // Save references for later use
+            insertedSports.push(existingSport);
         }
 
         return insertedSports;

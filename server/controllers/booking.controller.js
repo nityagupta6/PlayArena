@@ -1,7 +1,7 @@
 import Booking from "../models/booking.model.js";
 import Court from "../models/court.model.js";
-import Sport from "../models/sport.model.js";
-import Center from "../models/center.model.js";
+import { Sport } from "../models/sport.model.js";
+import { Center } from "../models/center.model.js";
 import {
   response_200,
   response_201,
@@ -49,8 +49,8 @@ export async function viewBookings(req, res) {
   }
 }
 export async function createBooking(req, res) {
-  const { courtId, startTime,name } = req.body; 
-  const duration = 60; 
+  const { courtId, startTime, name } = req.body;
+  const duration = 60;
 
   try {
     const court = await Court.findById(courtId);
@@ -74,7 +74,7 @@ export async function createBooking(req, res) {
       $or: [
         { startTime: { $lt: bookingEnd, $gte: bookingStart } },
         { endTime: { $gt: bookingStart, $lte: bookingEnd } }
-    ]
+      ]
     });
 
     if (conflictingBooking) {
