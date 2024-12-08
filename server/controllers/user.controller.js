@@ -4,11 +4,13 @@ import { getJwt } from '../utils/password.js';
 import { response_200, response_500, response_400, response_201 } from '../utils/responseCodes.js';
 
 export async function signUp(req, res) {
+  console.log("check1");
   const { name, email, password } = req.body;
 
   if (!name || !email || !password) {
     return response_400(res, 'All fields are required');
   }
+
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
@@ -63,7 +65,8 @@ export async function login(req, res) {
       id: user._id,
       name: user.name,
       email: user.email,
-      token: jwtToken,
+      secret: jwtToken,
+      role: user.role,
     });
   } catch (error) {
     return response_500(res, 'Error during login', error.message);
