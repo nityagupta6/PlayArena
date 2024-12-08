@@ -2,7 +2,7 @@ import Calendar from "../Calendar";
 import Navbar from "../Navbar";
 import axios from "axios";
 import { useEffect, useState } from "react";
-export default function Home() {
+export default function ManagerHome() {
     const [centers, setCenters] = useState([]);
     const [bookingsData, setBookings] = useState([]);
     const [courtsData, setCourts] = useState([]);

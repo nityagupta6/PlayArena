@@ -95,3 +95,19 @@ export async function createBooking(req, res) {
     return response_500(res, "Failed to create booking", error);
   }
 }
+
+export async function getAllBookings(req, res) {
+  try {
+    // Fetch all bookings, populate only the court information
+    const bookings = await Booking.find()
+      .populate('court');  // Only populate the court field
+
+    if (!bookings || bookings.length === 0) {
+      return response_400(res, "No bookings found.");
+    }
+
+    return response_200(res, "All bookings fetched successfully", { bookings });
+  } catch (err) {
+    return response_500(res, "Server Error", err);
+  }
+}

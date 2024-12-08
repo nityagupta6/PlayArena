@@ -1,4 +1,4 @@
-import {model, Schema} from 'mongoose';
+import { model, Schema } from 'mongoose';
 const BookingSchema = new Schema({
     user: {
         type: String,
@@ -17,7 +17,7 @@ const BookingSchema = new Schema({
         type: Date,
         required: true
     },
-},{
+}, {
     timestamps: true
 })
 export default model('Booking', BookingSchema);

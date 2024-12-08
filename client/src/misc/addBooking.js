@@ -8,49 +8,47 @@ export default function AddBooking({
     selectedDate,
     hour,
     trigger
-}){
-    const [error,setError] = useState(false);
-   
+}) {
+    const [error, setError] = useState(false);
+
     function formatStartTime(hour) {
-        const now = new Date(selectedDate); 
+        const now = new Date(selectedDate);
         now.setUTCHours(hour, 0, 0, 0);
         return now.toISOString();
     }
-    const handleSubmit = async (e)=>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
         let clientName = e.target.clientName.value;
-        if(clientName.trim() === ""){
+        if (clientName.trim() === "") {
             setError(true);
             return;
         }
-        else
-        {
+        else {
             const startTime = formatStartTime(hour);
             console.log(startTime);
-            try{
-                let res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/booking/`,{
-                    courtId: courtID, 
+            try {
+                let res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/booking/`, {
+                    courtId: courtID,
                     startTime: startTime,
                     name: clientName.trim(),
                 })
-                trigger(prev=>!prev);
+                trigger(prev => !prev);
                 toggleVisible();
             }
-            catch(e)
-            {
+            catch (e) {
                 console.log(e);
             }
         }
     }
-    useEffect(()=>{
+    useEffect(() => {
         console.log(selectedDate);
-    },[])
-    return(
+    }, [])
+    return (
         <div className="fixed top-1/2 flex justify-center items-center left-1/2 translate-x-[-50%] translate-y-[-50%] rounded-md shadow-lg bg-white p-8 z-[100]">
             <div className="absolute top-0 m-2 font-semibold">
                 {slotTiming}
             </div>
-            <div onClick={toggleVisible} className= " text-2xl cursor-pointer absolute right-0 top-0 m-2">
+            <div onClick={toggleVisible} className=" text-2xl cursor-pointer absolute right-0 top-0 m-2">
                 <IoMdClose />
             </div>
             <form onSubmit={handleSubmit} className="outlin">
@@ -58,7 +56,7 @@ export default function AddBooking({
                     <label className="font-semibold">
                         Name
                     </label>
-                    <input onChange={()=>setError(false)} type="text" name="clientName" className={`${error?'outline-red-500 outline-1 border-white':''} outline-none  border-black px-2 py-1 hover:bg-gray-100 focus:bg-gray-100 transition-all border-b-[1px] border-black" type="text" name="clientName`}/>
+                    <input onChange={() => setError(false)} type="text" name="clientName" className={`${error ? 'outline-red-500 outline-1 border-white' : ''} outline-none  border-black px-2 py-1 hover:bg-gray-100 focus:bg-gray-100 transition-all border-b-[1px] border-black" type="text" name="clientName`} />
                 </div>
                 <button className=" hover:bg-green-600 bg-green-500 text-white  transition-all px-2 py-1 " type="submit">Book Slot</button>
             </form>
