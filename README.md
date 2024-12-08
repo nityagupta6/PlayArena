@@ -5,6 +5,8 @@
 ## **Project Overview**
 PlayArena is a comprehensive booking management system designed for sports technology companies. It facilitates the management of sports facilities across multiple centers, allowing customers to book 60-minute slots for their preferred sports. The system also empowers center managers with tools to efficiently view and manage all bookings.
 
+Link To Report: https://drive.google.com/file/d/1C4OQMaTbT9COYUpcVhs3egb_6QSD1WhG/view?usp=sharing
+
 ---
 
 ## **Core Features**
